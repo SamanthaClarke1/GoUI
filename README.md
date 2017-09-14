@@ -14,14 +14,14 @@ https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Libra
  * ### Example Code
 To start using the library, you'll want to initialize and import it.
 ```
-    import GoUI.lib.*;
+import GoUI.lib.*;
 
-    void setup() {
-      GoUI goui = new GoUI(this);
-    }
-    void draw() {
-       
-    }
+void setup() {
+  GoUI goui = new GoUI(this);
+}
+void draw() {
+
+}
 ```
 
 ## Documentation
