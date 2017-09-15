@@ -13,6 +13,7 @@ https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Libra
 
  * ### Basic Code
 To start using the library, you'll want to initialize and import it.
+
 ```
 import GoUI.lib.*;
 
@@ -25,6 +26,7 @@ void draw() {
 ```
 
 * ### Example Code
+
 ```
 import GoUI.lib.*;
 
