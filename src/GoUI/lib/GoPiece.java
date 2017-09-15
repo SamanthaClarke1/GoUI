@@ -7,12 +7,12 @@ public class GoPiece {
 	public GoRect r;
 	boolean isInitialized = false;
 	boolean hasText = false;
-	boolean mLeftIsEnabled = true;
-	boolean mRightIsEnabled = false;
+	public boolean mLeftIsEnabled = true;
+	public boolean mRightIsEnabled = false;
 	
-	PFont text;
-	String displayText = "";
-	String color = "";
+	public PFont text;
+	public String displayText = "";
+	public String Color = "";
 	
 	public String ID = "";
 	
@@ -25,18 +25,18 @@ public class GoPiece {
 		
 		this.isInitialized = true;
 	}
-	public GoPiece(int x, int y, int w, int h, String color)
+	public GoPiece(int x, int y, int w, int h, String Color)
 	{
 		this.r = new GoRect(x, y, w, h);
-		this.color = color;
+		this.Color = Color;
 		
 		this.isInitialized = true;
 	}
-	public GoPiece(int x, int y, int w, int h, String displayText, PFont text, String color)
+	public GoPiece(int x, int y, int w, int h, String displayText, PFont text, String Color)
 	{
 		this.r = new GoRect(x, y, w, h);
 		this.text = text;
-		this.color = color;
+		this.Color = Color;
 		this.displayText = displayText;
 		
 		this.isInitialized = true;
@@ -69,16 +69,29 @@ public class GoPiece {
 	
 	public void Draw(PApplet p) 
 	{
-		String[] rgb = color.split(",");
-		
-		p.rect(r.x, r.y, r.w, r.h);
+		String[] rgb = Color.split(",");
 		
 		p.fill(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2]));
+		
+		p.rect(r.x, r.y, r.w, r.h);
 		
 		if (this.hasText) {
 			p.textFont(this.text);
 			
+			p.fill(33);
+			
 			p.text(this.displayText, this.r.textPosX, this.r.textPosY);
 		}
+	}
+	
+	public void AddToColor(int rp, int gp, int bp)
+	{
+		String[] rgb = Color.split(",");
+		
+		rgb[0] = String.valueOf(Integer.parseInt(rgb[0]) + rp);
+		rgb[1] = String.valueOf(Integer.parseInt(rgb[1]) + gp);
+		rgb[2] = String.valueOf(Integer.parseInt(rgb[2]) + bp);
+		
+		Color = String.join(",", rgb);
 	}
 }
