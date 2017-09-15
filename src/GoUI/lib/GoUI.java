@@ -24,6 +24,7 @@
  */
 
 package GoUI.lib;
+import java.util.*;
 
 import processing.core.*;
 
@@ -39,14 +40,15 @@ import processing.core.*;
  *
  */
 
-public class GoUI {
+public class GoUI 
+{
 	
 	// myParent is a reference to the parent sketch
 	PApplet myParent;
-
-	int myVariable = 0;
 	
-	public final static String VERSION = "##version##";
+	ArrayList<GoPiece> pieces = new ArrayList<GoPiece>();
+	
+	public final static String VERSION = "0.1.1";
 	
 
 	/**
@@ -56,46 +58,95 @@ public class GoUI {
 	 * @example Hello
 	 * @param theParent
 	 */
-	public GoUI(PApplet theParent) {
+	public GoUI(PApplet theParent)
+	{
 		myParent = theParent;
 		welcome();
 	}
 	
+	public ArrayList<String[]> CheckPieces(int mouseX, int mouseY, boolean mLeft, boolean mRight)
+	{
+		ArrayList<String[]> retvals = new ArrayList<String[]>();
+		
+		for(int i = 0; i < pieces.size(); i++) {
+			String checkResult = pieces.get(i).Check(mouseX, mouseY, mLeft, mRight);
+			String pieceId = pieces.get(i).ID;
+			
+			retvals.add(new String[] {pieceId, checkResult});
+		}
+		
+		return retvals;
+	}
 	
-	private static void welcome() {
-		System.out.println("##name## ##version## by ##author##");
+	public GoPiece GetPieceById(String tid)
+	{
+		GoPiece pieceToReturn = null;
+		
+		for (int i = 0; i < pieces.size(); i++)
+		{
+			if(pieces.get(i).ID.equals(tid))
+			{
+				System.out.println("-- GoUI " + tid + "  " + pieces.get(i).ID);
+				pieceToReturn = pieces.get(i);
+			}
+		}
+		
+		if(pieceToReturn != null) {
+			return pieceToReturn;
+		}
+		return null;
+	}
+	
+	public String AddPiece(GoPiece p)
+	{
+		String ID = generateId();
+		p.ID = ID;
+		
+		pieces.add(p);
+	
+		return ID;
+	}
+	
+	public void DrawPieces()
+	{
+		for(int i = 0; i < pieces.size(); i++)
+		{
+			pieces.get(i).Draw(this.myParent);
+		}
+	}
+	
+	private void welcome()  // welcome function, called by GoUI constructor
+	{
+		System.out.println("-- GoUI " + VERSION + " by Samuel Clarke --");
 	}
 	
 	
-	public static String sayHello() {
-		return "hello library.";
+	public String SayHello() // hello!
+	{
+		return "Hello lib!";
 	}
 	/**
 	 * return the version of the library.
 	 * 
 	 * @return "0.1.1"
 	 */
-	public static String version() {
+	public String Version() // returns the current version
+	{
 		return VERSION;
 	}
-
-	/**
-	 * 
-	 * @param theA
-	 *          the width of test
-	 * @param theB
-	 *          the height of test
-	 */
-	public void setVariable(int theA, int theB) {
-		myVariable = theA + theB;
-	}
-
-	/**
-	 * 
-	 * @return 1
-	 */
-	public int getVariable() {
-		return myVariable;
+	
+	private String generateId()
+	{
+		String ID = "";
+		
+		for(int i = 0; i < 11; i++) {
+			Random ran = new Random();
+			int random = ran.nextInt(10);
+			
+			ID += random;
+		}
+		
+		return ID;
 	}
 }
 
