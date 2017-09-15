@@ -86,7 +86,6 @@ public class GoUI
 		{
 			if(pieces.get(i).ID.equals(tid))
 			{
-				System.out.println("-- GoUI " + tid + "  " + pieces.get(i).ID);
 				pieceToReturn = pieces.get(i);
 			}
 		}
