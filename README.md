@@ -90,4 +90,5 @@ void mouseReleased()
 }
 ```
 
-#### Created by Samuel Clarke 09/2017
+### For further information, please see the files you get once you download it. Such as the ones in reference.
+#### Samuel Clarke, 09/2017
