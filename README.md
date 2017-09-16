@@ -6,7 +6,7 @@ Setup for the GoUI is relatively easy. Just place the .jar that you download ins
 For windows users:
 
 * C:\Users\owner\Documents\Processing\libraries
-  + Add \GoUI_lib\library\GoUI.jar
+  *  \+ \GoUI_lib\library\GoUI.jar
 
 If you are not a windows user, or just want to see further instructions, see this page:
 https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library
